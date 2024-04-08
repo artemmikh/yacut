@@ -11,7 +11,7 @@ class YacutForm(FlaskForm):
     custom_id = StringField(
         'Ваш вариант короткой ссылки',
         validators=[DataRequired(message='Обязательное поле'),
-                    Length(1, 128)])
+                    Length(1, 16)])
     submit = SubmitField('Создать')
 
 # TODO Валидация совпадения с оригинальной ссылкой.
