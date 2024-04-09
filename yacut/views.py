@@ -2,7 +2,7 @@ import random
 import string
 from urllib.parse import urlparse
 
-from flask import render_template, request, redirect, url_for, flash, session
+from flask import render_template, request, redirect, flash, session
 
 from . import app, db
 from .models import URLMap
@@ -31,7 +31,9 @@ def index_view(short=None):
         if custom_id:
             if URLMap.query.filter_by(short=custom_id).first() is not None:
                 flash('Предложенный вариант короткой ссылки уже существует.')
-                return render_template('index.html', form=form)
+                return render_template(
+                    'index.html',
+                    form=form)
             else:
                 short = custom_id
         else:
