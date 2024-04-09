@@ -9,7 +9,7 @@ from .models import URLMap
 from .forms import YacutForm
 
 LENGTH_SHORT_LINK = 6
-ENDPOINT = 'http://127.0.0.1:5000/'
+ENDPOINT = 'http://localhost/'
 
 
 def get_unique_short_id():
@@ -40,7 +40,8 @@ def index_view(short=None):
         db.session.add(new_url)
         db.session.commit()
         session['short'] = short
-        return redirect(url_for('index_view', short=short))
+        return render_template('index.html', form=form,
+                               short=ENDPOINT + short), 200
     if session.get('short'):
         short_link = ENDPOINT + session.pop('short')
         return render_template('index.html',
@@ -48,11 +49,6 @@ def index_view(short=None):
                                short=short_link)
     else:
         return render_template('index.html', form=form)
-    # short_link = ENDPOINT + session.pop('short', '') if session.get(
-    #     'short') else ''
-    # return render_template('index.html',
-    #                        form=form,
-    #                        short=short_link)
 
 
 @app.route('/<string:short>')
