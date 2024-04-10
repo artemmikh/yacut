@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Regexp, Optional
+from settings import Config
 
 
 class YacutForm(FlaskForm):
@@ -10,5 +11,8 @@ class YacutForm(FlaskForm):
     )
     custom_id = StringField(
         'Ваш вариант короткой ссылки',
-        validators=[Length(0, 16)])
+        validators=[
+            Optional(),
+            Regexp(Config.PATTERN,
+                   message='Указано недопустимое имя для короткой ссылки')])
     submit = SubmitField('Создать')

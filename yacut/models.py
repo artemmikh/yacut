@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from yacut import db
+from settings import Config
 
-ENDPOINT = 'http://localhost/'
+from yacut import db
 
 
 class URLMap(db.Model):
@@ -14,7 +14,7 @@ class URLMap(db.Model):
     def to_dict(self):
         return dict(
             url=self.original,
-            short_link=ENDPOINT + self.short
+            short_link=Config.ENDPOINT + self.short
         )
 
     def from_dict(self, data):
