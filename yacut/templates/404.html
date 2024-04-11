@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}404. Страница не найдена...{% endblock %}
 {% block content %}
-	<section class="container my-5">
-		<div class="row">
-			<div class="col-12 col-lg-7 my-5">
-				<h1 class="mb-5">Запрашиваемая страница не найдена.</h1>
-				<p>
-					<a href="{{ url_for('index_view') }}">Вернуться на главную</a>
-				</p>
-			</div>
-		</div>
-	</section>
+  <section class="container my-5">
+    <div class="row">
+      <div class="col-12 col-lg-7 my-5">
+        <h1 class="mb-5">Запрашиваемая страница не найдена...</h1>
+        <p>
+          <a href="{{ url_for('index_view') }}">Вернуться на главную</a>
+        </p>
+      </div>
+    </div>
+  </section>
 {% endblock %}
